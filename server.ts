@@ -3,11 +3,11 @@ dotenv.config();
 
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
-import { SYS } from './src/data';
+import { SYS } from './src/data.ts';
 import { GoogleGenAI } from '@google/genai';
 
 async function startServer() {
+  console.log("Starting full-stack Express server...");
   const app = express();
   const PORT = 3000;
 
@@ -15,6 +15,7 @@ async function startServer() {
 
   // API routing for Chat
   app.post("/api/chat", async (req, res) => {
+    console.log("POST request received at /api/chat");
     try {
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
@@ -59,7 +60,8 @@ async function startServer() {
   });
 
   if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
+    const { createServer } = await import("vite");
+    const vite = await createServer({
       server: { middlewareMode: true },
       appType: "spa",
     });

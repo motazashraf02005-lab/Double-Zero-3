@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from "express";
 import path from "path";
-import { SYS } from './src/data.ts';
+import { SYS } from './src/data';
 import { GoogleGenAI } from '@google/genai';
 
 async function startServer() {
@@ -59,7 +59,8 @@ async function startServer() {
     }
   });
 
-  if (process.env.NODE_ENV !== "production") {
+  const isDev = !process.argv[1]?.includes('dist');
+  if (isDev) {
     const { createServer } = await import("vite");
     const vite = await createServer({
       server: { middlewareMode: true },

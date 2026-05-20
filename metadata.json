@@ -1,0 +1,6 @@
+{
+  "name": "Double Zero",
+  "description": "Specialty cafe progressive web application with interactive AI Barista interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

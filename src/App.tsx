@@ -113,7 +113,15 @@ export default function App() {
           messages: msgsForApi
         })
       });
-      const data = await res.json();
+
+      let data: any;
+      const resText = await res.text();
+      try {
+        data = JSON.parse(resText);
+      } catch (parseEv) {
+        throw new Error(`مشكلة في الاتصال بالخادم (HTTP ${res.status}). تأكد من إعداد الـ GEMINI_API_KEY بشكل صحيح.`);
+      }
+
       setIsTyping(false);
       
       if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);

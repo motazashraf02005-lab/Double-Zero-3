@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import { SYS } from './src/data.js';
+import { SYS } from './src/data';
 import { GoogleGenAI } from '@google/genai';
 
 async function startServer() {
